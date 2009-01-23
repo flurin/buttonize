@@ -5,6 +5,15 @@ require 'fileutils'
 include FileUtils
 
 module Buttonize
+  def run_in_cli!
+    @run_in_cli = true
+  end
+  
+  def cli?
+    @run_in_cli
+  end
+  
+  module_function :run_in_cli!, :cli?
 end
 
 require File.dirname(__FILE__) + "/buttonize/button"

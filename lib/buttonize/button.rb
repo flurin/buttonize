@@ -26,6 +26,7 @@ class Buttonize::Button
   
   def generate(text, filename = nil)
     filename ||= self.text_to_filename(text)
+    filename = add_extension(filename,"gif")
     paddings = options[:paddings]
 
     # Load the images
@@ -75,10 +76,15 @@ class Buttonize::Button
   end
 
   def text_to_filename(text)
-    text.to_s.downcase.gsub(/[^a-z0-9]/,"_").squeeze("_").gsub(/_$/,"") + ".gif"
+    text.to_s.downcase.gsub(/[^a-z0-9]/,"_").squeeze("_").gsub(/_$/,"") 
   end
   
-  def get_text_metrics_for(text)
-    
+  def add_extension(filename,extension)
+    if filename =~ /\.#{extension}$/
+      filename
+    else
+      filename + "." + extension
+    end
   end
+  
 end
