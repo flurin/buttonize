@@ -19,4 +19,5 @@ buttons = Buttonize::ButtonSet.define(:style_file => File.dirname(__FILE__) + "/
   end
 end
 
-buttons.generate(:target_path => "/Users/flurin/temp/button_out")
+# This will not be ran if you use the buttonize commandline script
+buttons.generate(:target_path => "~/temp/button_out")
