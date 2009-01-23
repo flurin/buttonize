@@ -4,7 +4,10 @@ include Magick
 require 'fileutils'
 include FileUtils
 
-require File.dirname(__FILE__) + "buttonize/button"
-
 module Buttonize
 end
+
+require File.dirname(__FILE__) + "/buttonize/button"
+require File.dirname(__FILE__) + "/buttonize/style_set"
+require File.dirname(__FILE__) + "/buttonize/button_set"
+
