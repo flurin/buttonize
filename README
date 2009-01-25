@@ -2,13 +2,12 @@ Buttonize, your favourite button generator.
 ===========================================
 
 Buttonize is a little tool to generate sets of buttons by creating simple image templates (a left side, a repeatable middle
-and a right side). You can use buttonize do create sets of buttons and sets of button styles. See the examples directory
-for more information (examples/buttons.rb is a buttonset file and examples/default/styles.rb is a styleset file)
+and a right side). You can use buttonize to create sets of buttons and sets of button styles. See the examples directory
+for more information (examples/buttons.rb is a buttonset file and examples/default/styles.rb is a styleset file).
 
 
 Installing
 ============
-
 Buttonize has the following dependencies:
 
 * Ruby 1.8.x (not tested in 1.9.x)
@@ -23,17 +22,15 @@ sudo gem install flurin-buttonize --source=http://gems.github.com
 
 Quickstart
 ==========
+For the impatient who just want to generate a blue button (and have all required stuff installed)
 
-For the impatient who just want to generate a blue button (and have all required stuff installed)!
-
-Run: 
+Run:
 buttonize button --style=big_blue "My first button"
 
-and open
+Open:
 my_first_button.gif
 
 
 Copyright & license
 ===================
-
 Copyright (c) 2009 Flurin Egger, DigitPaint, MIT Style License. (see MIT-LICENSE)
