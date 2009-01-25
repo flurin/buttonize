@@ -4,15 +4,16 @@ class Buttonize::Button
   
   def initialize(options)
     @options = {
-      :font_size => 9, 
       :paddings => [10,10], 
       :width => nil, 
       :template_base => "button",
       :template_path => File.dirname(__FILE__) + "/../../examples/default",        
       :font => "Arial",#File.dirname(__FILE__) + "/fonts/verdanab.ttf", 
+      :font_size => 9,       
+      :font_antialias => true, 
       :text_offset => {:x => 0, :y => 0},
-      :target_path => Dir.pwd,
-      :antialias => true
+      :text_align => :center,
+      :target_path => Dir.pwd
     }.update(options)
     @options[:template_images] ||=  ["_left","_middle","_right"].map{|p| options[:template_base] + p + ".gif" }
     
@@ -35,10 +36,10 @@ class Buttonize::Button
     draw = Draw.new
     draw.pointsize = options[:font_size]
     draw.fill = "#fff"
-    draw.gravity = Magick::CenterGravity
+    draw.gravity = self.gravity_from_alignment(options[:text_align])
     draw.font = options[:font]
-    draw.font_weight = Magick::BoldWeight
-    draw.text_antialias = options[:antialias] || false
+    draw.font_weight = Magick::AnyWeight
+    draw.text_antialias = options[:font_antialias] || false
     
     # Measure the text first
     metrics = draw.get_type_metrics(text)
@@ -84,6 +85,14 @@ class Buttonize::Button
       filename
     else
       filename + "." + extension
+    end
+  end
+  
+  def gravity_from_alignment(alignment)
+    case alignment
+    when :left then Magick::WestGravity
+    when :right then Magick::EastGravity
+    else Magick::CenterGravity      
     end
   end
   
