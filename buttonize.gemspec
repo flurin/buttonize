@@ -68,6 +68,6 @@ Gem::Specification.new do |s|
   
   s.has_rdoc = false
   
-  s.add_dependency "rmagick", ["=> 2.5.1"]
+  s.add_dependency "rmagick", [">= 2.5.1"]
   s.add_dependency "wycats-thor", ["~> 0.9.8"]
 end
