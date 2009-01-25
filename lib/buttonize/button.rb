@@ -4,15 +4,16 @@ class Buttonize::Button
   
   def initialize(options)
     @options = {
-      :paddings => [10,10], 
       :width => nil, 
       :template_base => "button",
       :template_path => File.dirname(__FILE__) + "/../../examples/default",        
       :font => "Arial",#File.dirname(__FILE__) + "/fonts/verdanab.ttf", 
       :font_size => 9,       
       :font_antialias => true, 
+      :text_color => "#fff",
       :text_offset => {:x => 0, :y => 0},
       :text_align => :center,
+      :padding => {:left => 10, :right => 10},       
       :target_path => Dir.pwd
     }.update(options)
     @options[:template_images] ||=  ["_left","_middle","_right"].map{|p| options[:template_base] + p + ".gif" }
@@ -28,14 +29,14 @@ class Buttonize::Button
   def generate(text, filename = nil)
     filename ||= self.text_to_filename(text)
     filename = add_extension(filename,"gif")
-    paddings = options[:paddings]
+    padding = options[:padding]
 
     # Load the images
     left,mid,right = options[:template_images].map{|p| Image.read(File.join(options[:template_path],p)).first }  
 
     draw = Draw.new
     draw.pointsize = options[:font_size]
-    draw.fill = "#fff"
+    draw.fill = options[:text_color]
     draw.gravity = self.gravity_from_alignment(options[:text_align])
     draw.font = options[:font]
     draw.font_weight = Magick::AnyWeight
@@ -43,7 +44,7 @@ class Buttonize::Button
     
     # Measure the text first
     metrics = draw.get_type_metrics(text)
-    target_width = metrics.width + paddings[0] + paddings[1]
+    target_width = metrics.width + padding[:left] + padding[:right]
 
     target_width = options[:width] if options[:width] && options[:width] > target_width
 
@@ -69,7 +70,13 @@ class Buttonize::Button
 
     # Place right
     dst.composite!(right,pos,0,Magick::OverCompositeOp)
-    draw.annotate(dst,0,0,options[:text_offset][:x],options[:text_offset][:y],text)
+    
+    # Draw text
+    left = options[:text_offset][:x] || 0
+    left += padding[:left] unless options[:text_align] == :center
+    draw.annotate(dst,0,0,left,options[:text_offset][:y],text)
+    
+    # Write file
     dst.write(File.join(options[:target_path],filename))
     dst.destroy!
     

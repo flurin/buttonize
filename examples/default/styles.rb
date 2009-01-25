@@ -16,11 +16,14 @@ Buttonize::StyleSet.define(:template_path => File.dirname(__FILE__)) do |set|
     # Size of the font to use in pt (default = 9)
     s.font_size = 10
     # Antialias the font when rendering (default = true)
-    s.font_antialias = true     
+    s.font_antialias = true
     
+    # The color of the textrendering, can be anything RMagick sees as
+    # a color. (default = #fff)
+    s.text_color = "#fff"
     # The text alignment within the final button, can be any of
     # :left, :right or :center (default = :center)
-    s.text_align = :left
+    s.text_align = :center
     # The x and y offset the text should be rendered with. This
     # is in relation to the alignment set and can be used to finetune the optical
     # text placement.
@@ -32,12 +35,11 @@ Buttonize::StyleSet.define(:template_path => File.dirname(__FILE__)) do |set|
     # Buttonize falls back on rendering the text with the specified paddings (see below)
     # (default = nil)
     s.width = nil
-    
     # The padding to give the text to the left and right side of the button
     # specified in an array of [left_padding,right_padding] in pixels. If width
     # is set and the text width + padding fits into the width, these paddings
-    # will be ignored. (default = [10,10])
-    s.paddings = [20,20]
+    # will be ignored. (default = {:left => 10, :right => 10})
+    s.padding = {:left => 20, :right => 20}
     
   end
 
