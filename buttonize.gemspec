@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name      = "buttonize"
-  s.version   = "0.1.3"
+  s.version   = "0.1.4"
   s.date      = "2009-01-25"
                 
   s.authors   = ["Flurin Egger"]
@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
                     examples/default/big_red_left.gif
                     examples/default/big_red_middle.gif
                     examples/default/big_red_right.gif
-                    examples/default/fonts/Bitstream Vera License.txt
+                    examples/default/fonts/Bitstream\ Vera\ License.txt
                     examples/default/fonts/Vera-Bold-Italic.ttf
                     examples/default/fonts/Vera-Bold.ttf
                     examples/default/fonts/Vera-Italic.ttf
