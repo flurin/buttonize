@@ -1,6 +1,7 @@
 require 'thor'
 
 module Buttonize
+  EXAMPLE_STYLE_FILE = File.join(File.dirname(__FILE__),"../../examples/default/styles.rb")
 
   class CLI < Thor
   
@@ -25,6 +26,10 @@ module Buttonize
       require buttonset    
       raise "Are you sure #{buttonset} is a buttonset file?" if !ButtonSet.current
       
+      if !ButtonSet.current.options[:style_file]
+        require EXAMPLE_STYLE_FILE
+      end
+      
       puts "Generating buttons...."
       ButtonSet.current.send(:generate_buttons,options)
     end
@@ -34,7 +39,7 @@ module Buttonize
                    :style_set => :optional, # The styleset to use. Defaults to "default"
                    :style => :required # The button style to use.
     def button(text,outfile=nil)
-      options = {"style_file" => File.join(File.dirname(__FILE__),"../../examples/default/styles.rb"), "style_set" => :default}.update(self.options)
+      options = {"style_file" => EXAMPLE_STYLE_FILE, "style_set" => :default}.update(self.options)
       style = get_style(options["style_file"],options["style_set"],options["style"])
       Buttonize::Button.new(style).generate(text,outfile)
     end

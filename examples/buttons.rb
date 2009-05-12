@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + "/../lib/buttonize"
 
-buttons = Buttonize::ButtonSet.define(:style_file => File.dirname(__FILE__) + "/default/styles.rb", :style_set => :default) do |set|
+buttons = Buttonize::ButtonSet.define(:style_set => :default) do |set|
   
   set.button "Test", :style => :small_green
   
