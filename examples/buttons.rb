@@ -1,6 +1,8 @@
 require File.dirname(__FILE__) + "/../lib/buttonize"
+require 'pathname'
+base = Pathname.new(File.dirname(__FILE__))
 
-buttons = Buttonize::ButtonSet.define(:style_set => :default) do |set|
+buttons = Buttonize::ButtonSet.define(:style_file => base + "default/styles.rb", :style_set => :default) do |set|
   
   set.button "Test", :style => :small_green
   
@@ -20,4 +22,4 @@ buttons = Buttonize::ButtonSet.define(:style_set => :default) do |set|
 end
 
 # This will not be ran if you use the buttonize commandline script
-buttons.generate(:target_path => "~/temp/button_out")
+buttons.generate(:target_path => File.expand_path("~/temp/button_out"))
