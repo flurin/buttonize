@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name      = "buttonize"
-  s.version   = "0.1.4"
-  s.date      = "2009-01-25"
+  s.version   = "0.2.0"
+  s.date      = "2009-05-22"
                 
   s.authors   = ["Flurin Egger"]
   s.email     = "f.p.egger@gmail.com"
