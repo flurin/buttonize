@@ -30,6 +30,13 @@ Buttonize::StyleSet.define(:template_path => File.dirname(__FILE__)) do |set|
     s.text_offset = {:x => 0, :y => 0}
     
     
+    # Simple text shadow.
+    s.text_shadow = true
+    # Placement of the shadow relative to the original text.
+    s.text_shadow_offset = {:x => 1, :y => 1}
+    # Color of the shadow.
+    s.text_shadow_color = "#000"
+    
     # If width is set (not nil) Buttonize will try to create a button of 
     # the specified width, if the text will however not fit (including paddings)
     # Buttonize falls back on rendering the text with the specified paddings (see below)
@@ -48,7 +55,7 @@ Buttonize::StyleSet.define(:template_path => File.dirname(__FILE__)) do |set|
   set.style(:big_green, :based_on => :big_blue, :template_base => "big_green")
   
   # Inline style definition with a Hash
-  set.style(:small_blue, :font => File.join(File.dirname(__FILE__),"fonts","Vera.ttf"), :font_size => 9, :template_base => "small_blue", :width => 65)
+  set.style(:small_blue, :font => File.join(File.dirname(__FILE__),"fonts","Vera-Bold.ttf"), :font_size => 9, :template_base => "small_blue", :width => 65)
   set.style(:small_orange, :based_on => :small_blue, :template_base => "small_orange")
   set.style(:small_red, :based_on => :small_blue, :template_base => "small_red")
   set.style(:small_green, :based_on => :small_blue, :template_base => "small_green")

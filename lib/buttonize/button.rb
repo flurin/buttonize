@@ -13,6 +13,9 @@ class Buttonize::Button
       :text_color => "#fff",
       :text_offset => {:x => 0, :y => 0},
       :text_align => :center,
+      :text_shadow => false,
+      :text_shadow_offset => {:x => 1, :y => 1},
+      :text_shadow_color => "#000",
       :padding => {:left => 10, :right => 10},       
       :target_path => Dir.pwd
     }.update(options)
@@ -36,7 +39,6 @@ class Buttonize::Button
 
     draw = Draw.new
     draw.pointsize = options[:font_size]
-    draw.fill = options[:text_color]
     draw.gravity = self.gravity_from_alignment(options[:text_align])
     draw.font = options[:font]
     draw.font_weight = Magick::AnyWeight
@@ -74,6 +76,12 @@ class Buttonize::Button
     # Draw text
     left = options[:text_offset][:x] || 0
     left += padding[:left] unless options[:text_align] == :center
+    
+    if options[:text_shadow]
+      draw.fill = options[:text_shadow_color]
+      draw.annotate(dst,0,0,left+options[:text_shadow_offset][:x],options[:text_offset][:y]++options[:text_shadow_offset][:y],text)
+    end
+    draw.fill = options[:text_color]    
     draw.annotate(dst,0,0,left,options[:text_offset][:y],text)
     
     # Write file
